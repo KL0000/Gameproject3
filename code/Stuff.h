@@ -7,7 +7,7 @@ class Stuff : public sf::Sprite
     public:
         Stuff(sf::Texture& b,sf::Sprite p)
         {
-            b.loadFromFile("graphics/backgroundSprite.png");
+            b.loadFromFile("graphics/New Piskel.gif");
             setTexture(b);
             setPosition(p.getPosition().x, p.getPosition().y);
             setScale(2.0f, 2.0f);
@@ -27,10 +27,10 @@ class environment : public sf::Sprite {
 public:
     environment(sf::Texture& bg)
     {
-        bg.loadFromFile("graphics/backgroundSprite.jpg");
+        bg.loadFromFile("graphics/background.png");
         setTexture(bg);
         setPosition(0, 0);
-        setScale(1.9f, 1.8f);
+        
 
     };
 
