@@ -1,10 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <SFML/Graphics.hpp>
-//include "Monster.h"
 #include "Player.h"
 #include "Stuff.h"
 #include "gameplay.h"
+#include "monster.h"
 //#include "Alien.h"
 //#include "Zombie.h"
 
@@ -19,7 +19,14 @@ int main()
 	sf::Texture player;
 	sf::Texture backg;
 	sf::Texture bullet;
+	sf::Texture monster;
+	sf::Texture ninja;
 	Player p1(player);
+	Monster monsterEnemy(monster);
+	Ninja ninjaEnemy(ninja);
+
+bool monsterActive = false;
+
 	environment background(backg);
 	Stuff ayo(bullet,p1);
 	Hitbox hero, enemy;
@@ -47,6 +54,16 @@ int main()
 		{
 			ayo.bulletTraj(ayo, dt);
 		}
+		if(!monsterActive)
+		{
+			
+			monsterEnemy.setPosition(rand() % 10 * 100,500);
+			monsterActive = true;
+		}else{monsterEnemy.setPositionX(monsterEnemy,dt);
+		if(monsterEnemy.getPosition().x > -100)
+		{
+			monsterActive = false;
+		}}
 		
 
 		sf::Event event;
@@ -58,6 +75,8 @@ int main()
 		window.draw(background);
 		window.draw(ayo);
 		window.draw(p1);
+		window.draw(monsterEnemy);
+		window.draw(ninjaEnemy);
 		window.display();
 
 	}
