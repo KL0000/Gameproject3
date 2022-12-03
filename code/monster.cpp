@@ -9,7 +9,7 @@ Monster::Monster(sf::Texture& monsterText)
 }
 void Monster::setPositionX(sf::Sprite& x, sf::Time& y)
 {
-    x.setPosition(x.getPosition().x- ((rand()%10*100) * y.asSeconds()), x.getPosition().y);
+    x.setPosition(x.getPosition().x- ((rand() % 10 * 100) * y.asSeconds()), x.getPosition().y);
 }
 Ninja::Ninja(sf::Texture& ninjaText)
 {
