@@ -18,6 +18,8 @@ int main()
 	bool monsterActive = false;
 	bool ninjaActive = false;
 	bool bulletActive = false;
+	bool paused = true;
+	int score;
 	environment background(backg);
 	Stuff ayo(bullet,p1);
 	Hitbox hero, enemy1,enemy2;
@@ -29,7 +31,8 @@ int main()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){p1.SetPosition(p1,dt);}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){p1.SetPositionY(p1, dt);}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){bulletActive = true;}
-		if(!bulletActive){ayo.bulletSetPosition(p1);}else{ayo.bulletTraj(ayo,dt);}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){paused = false; score = 0;}
+		if(!bulletActive){ayo.bulletSetPosition(p1);}else{ayo.bulletTraj(ayo,dt);bulletActive = reset(ayo,p1);}
 		if(!monsterActive){monsterActive = monsterStart(monsterEnemy,dt);}else{monsterEnd(monsterEnemy,dt);monsterActive = outsideFrame(monsterEnemy,monsterActive);}
 		if(!ninjaActive){ninjaActive = monsterStart(ninjaEnemy,dt);}else{monsterEnd(ninjaEnemy,dt);ninjaActive = outsideFrame(ninjaEnemy,ninjaActive);}
 		hitboxPosM(hero,enemy1,monsterEnemy,ayo);
@@ -38,8 +41,8 @@ int main()
 		setHitBox(hero,enemy2);
 		const bool colliding1 = hero.getGlobalHitbox().intersects(enemy1.getGlobalHitbox());
 		const bool colliding2 = hero.getGlobalHitbox().intersects(enemy2.getGlobalHitbox());
-		if(colliding1){monsterActive = false; bulletActive = reset(ayo,colliding1,p1);}
-		if(colliding2){ninjaActive = false;bulletActive = reset(ayo,colliding2,p1);}
+		if(colliding1){monsterActive = false; bulletActive = reset(ayo,p1);}
+		if(colliding2){ninjaActive = false;bulletActive = reset(ayo,p1);}
 		sf::Event event;
 		while (window.pollEvent(event)){}
 		window.clear();

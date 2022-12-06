@@ -20,5 +20,5 @@ void setHitBox(Hitbox& a, Hitbox& b);
 void hitboxPosM(Hitbox& a, Hitbox& b, Monster& p1,Stuff& b1);
 void hitboxPosN(Hitbox& a, Hitbox& b, Ninja& p1,Stuff& b1);
 ///////////////////////////////////////////////
-bool reset(Stuff& b1,bool x,Player& q);
+bool reset(Stuff& b1,Player& q);
 
