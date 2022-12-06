@@ -8,19 +8,18 @@ Monster::Monster(sf::Texture& monsterText)
 }
 void Monster::setPositionX(sf::Sprite& x, sf::Time& y)
 {
-    srand((int)time(0));
+    
     x.setPosition(x.getPosition().x- (setSpeed() * y.asSeconds()), x.getPosition().y);
 }
 float Monster::setSpeed()
 {
     float monSpeed;
-    
+    srand((int)time(0));
     monSpeed = (rand() % 10 * 50);
     return monSpeed;
 }
 float Monster::setHeight()
 {
-    srand((int)time(0)*10);
     float height = (rand()%500)+500;
     return height;
 }
@@ -34,18 +33,17 @@ Ninja::Ninja(sf::Texture& ninjaText)
 
 void Ninja::setPositionX(sf::Sprite& x, sf::Time& y)
 {
-    srand((int)time(0));
     x.setPosition(x.getPosition().x- (setSpeed() * y.asSeconds()), x.getPosition().y);
 }
 float Ninja::setSpeed()
 {
     float ninSpeed;
+    srand((int)time(0));
     ninSpeed = (rand() % 10 * 100);
     return ninSpeed;
 }
 float Ninja::setHeight()
 {
-    srand((int)time(0)*15);
     float height = (rand()%300)+400;
     return height;
 }

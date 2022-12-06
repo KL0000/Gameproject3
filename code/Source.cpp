@@ -5,12 +5,15 @@
 #include "Stuff.h"
 #include "gameplay.h"
 #include "monster.h"
+#include "loadscreen.h"
 using namespace std;
 int main()
 {
 	//create window
 	sf::Clock clock;
+	sf::Font font;
 	sf::Texture firstBack,player,backg,bullet,monster,ninja;
+	sf::Text message,scores;
 	Pregame load(firstBack);
 	Player p1(player);
 	Monster monsterEnemy(monster);
@@ -24,6 +27,7 @@ int main()
 	Stuff ayo(bullet,p1);
 	Hitbox hero, enemy1,enemy2;
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Game");
+	loadMessage(font,message,scores);
 	while (window.isOpen())
 	{
 		sf::Time dt = clock.restart();
@@ -32,6 +36,7 @@ int main()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){p1.SetPositionY(p1, dt);}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){bulletActive = true;}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){paused = false; score = 0;}
+		if(!paused){
 		if(!bulletActive){ayo.bulletSetPosition(p1);}else{ayo.bulletTraj(ayo,dt);bulletActive = reset(ayo,p1);}
 		if(!monsterActive){monsterActive = monsterStart(monsterEnemy,dt);}else{monsterEnd(monsterEnemy,dt);monsterActive = outsideFrame(monsterEnemy,monsterActive);}
 		if(!ninjaActive){ninjaActive = monsterStart(ninjaEnemy,dt);}else{monsterEnd(ninjaEnemy,dt);ninjaActive = outsideFrame(ninjaEnemy,ninjaActive);}
@@ -41,16 +46,20 @@ int main()
 		setHitBox(hero,enemy2);
 		const bool colliding1 = hero.getGlobalHitbox().intersects(enemy1.getGlobalHitbox());
 		const bool colliding2 = hero.getGlobalHitbox().intersects(enemy2.getGlobalHitbox());
-		if(colliding1){monsterActive = false; bulletActive = reset(ayo,p1);}
-		if(colliding2){ninjaActive = false;bulletActive = reset(ayo,p1);}
+		if(colliding1){monsterActive = false; bulletActive = reset(ayo,p1); score++;}
+		if(colliding2){ninjaActive = false;bulletActive = reset(ayo,p1);score++;}
+		updateScore(scores,score);
+		}
 		sf::Event event;
 		while (window.pollEvent(event)){}
 		window.clear();
-		window.draw(background);
+		if(!paused){window.draw(background);}
 		window.draw(ayo);
 		window.draw(p1);
 		window.draw(monsterEnemy);
 		window.draw(ninjaEnemy);
+		window.draw(scores);
+		if(paused){window.draw(load); window.draw(message);}
 		window.display();
 	}
 	return 0;
