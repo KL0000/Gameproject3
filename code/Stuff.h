@@ -10,7 +10,7 @@ class Stuff : public sf::Sprite
             b.loadFromFile("graphics/New Piskel.gif");
             setTexture(b);
             setPosition(p.getPosition().x, p.getPosition().y);
-            setScale(5.0f, 5.0f);
+            setScale(3.0f, 3.0f);
         };
         void bulletSetPosition(Player& q) { setPosition(q.getPosition().x, q.getPosition().y); }
         float bulletSetSpeed() 
@@ -37,4 +37,15 @@ public:
 
     };
 
+};
+class Pregame : public sf::Sprite
+{
+    public:
+    Pregame(sf::Texture& bg)
+    {
+        bg.loadFromFile("graphics/phonto.jpg");
+        setTexture(bg);
+        setPosition(0,0);
+
+    }
 };

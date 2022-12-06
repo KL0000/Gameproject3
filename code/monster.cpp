@@ -1,7 +1,7 @@
 #include "monster.h"
 Monster::Monster(sf::Texture& monsterText)
 {
-    monsterText.loadFromFile("graphics/monster.png");
+    monsterText.loadFromFile("graphics/alien.PNG");
     setTexture(monsterText);
     setScale(0.1f,0.1f);
     setPosition(800,500);
@@ -26,9 +26,9 @@ float Monster::setHeight()
 }
 Ninja::Ninja(sf::Texture& ninjaText)
 {
-    ninjaText.loadFromFile("graphics/bee.png");
+    ninjaText.loadFromFile("graphics/ugly.PNG");
     setTexture(ninjaText);
-    setScale(0.5f,0.5f);
+    setScale(0.05f,0.05f);
     setPosition(600,400);
 }
 

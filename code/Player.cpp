@@ -3,10 +3,11 @@
 
 Player::Player(sf::Texture& text)
 {
-	text.loadFromFile("graphics/spaceship.png");
+	text.loadFromFile("graphics/spaceship1.PNG");
 	setTexture(text);
 	setPosition(100, 500);
-	setScale(0.1f, 0.1f);
+	setScale(0.1f,0.1f);
+	
 
 
 }
