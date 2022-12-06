@@ -47,7 +47,7 @@ void hitboxPosN(Hitbox& a, Hitbox& b, Ninja& n1,Stuff& b1)
 
 bool reset(Stuff& b1,Player& q)
 {
-    if(b1.getPosition().x > 1080)
+    if(b1.getPosition().x > 1920)
     {
         b1.bulletSetPosition(q);
         return false;
