@@ -8,21 +8,22 @@ Player::Player(sf::Texture& text)
 	setPosition(100, 500);
 	setScale(0.1f, 0.1f);
 
+
 }
 float Player::p1Speed()
 {
 	float sped;
-	sped = (rand() % 10) * 100;
+	sped = 8.0f * 100;
 	return sped;
 }
 
 
-void Player::SetPosition(sf::Sprite& x, sf::Time& y)
+void Player::SetPosition(Player& x, sf::Time& y)
 {
-	
+
 	x.setPosition(x.getPosition().x, x.getPosition().y - (p1Speed() * y.asSeconds()));
 }
-void Player::SetPositionY(sf::Sprite& x, sf::Time& y)
+void Player::SetPositionY(Player& x, sf::Time& y)
 {
 	x.setPosition(x.getPosition().x, x.getPosition().y + (p1Speed() * y.asSeconds()));
 }

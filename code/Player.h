@@ -10,8 +10,9 @@ public:
     Player();
     Player(sf::Texture& text);
 	float p1Speed();
-    void SetPosition(sf::Sprite& x,sf::Time& y);
-    void SetPositionY(sf::Sprite& x, sf::Time& y);
+    void SetPosition(Player& x,sf::Time& y);
+    void SetPositionY(Player& x, sf::Time& y);
+    
  
     
 

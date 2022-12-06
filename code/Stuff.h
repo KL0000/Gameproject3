@@ -5,21 +5,24 @@
 class Stuff : public sf::Sprite
 {
     public:
-        Stuff(sf::Texture& b,sf::Sprite p)
+        Stuff(sf::Texture& b,Player& p)
         {
             b.loadFromFile("graphics/New Piskel.gif");
             setTexture(b);
             setPosition(p.getPosition().x, p.getPosition().y);
-            setScale(2.0f, 2.0f);
+            setScale(5.0f, 5.0f);
         };
-        void bulletSetPosition(sf::Sprite q) { setPosition(q.getPosition().x, q.getPosition().y); }
-      
-        void bulletTraj(sf::Sprite& shot, sf::Time& y)
+        void bulletSetPosition(Player& q) { setPosition(q.getPosition().x, q.getPosition().y); }
+        float bulletSetSpeed() 
         {
-           
-            shot.setPosition(shot.getPosition().x + ((rand() % 10 * 100) * y.asSeconds() * 5.0f), shot.getPosition().y);
-    
-
+            float bulletSpeed;
+            bulletSpeed = (rand() % 10 * 100);
+            return bulletSpeed;
+        }
+        void bulletTraj(Stuff& shot, sf::Time& y)
+        {
+            srand((int)time(0));
+            shot.setPosition(shot.getPosition().x + (bulletSetSpeed() * y.asSeconds() * 5.0f), shot.getPosition().y);
         };
 };
 

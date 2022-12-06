@@ -5,13 +5,8 @@
 #include "Stuff.h"
 #include "gameplay.h"
 #include "monster.h"
-//#include "Alien.h"
-//#include "Zombie.h"
-
+#include <new>
 using namespace std;
-
-
-
 int main()
 {
 	//create window
@@ -24,14 +19,12 @@ int main()
 	Player p1(player);
 	Monster monsterEnemy(monster);
 	Ninja ninjaEnemy(ninja);
-
-bool monsterActive = false;
-
+	bool monsterActive = false;
+	bool ninjaActive = false;
+	bool bulletActive = false;
 	environment background(backg);
 	Stuff ayo(bullet,p1);
-	Hitbox hero, enemy;
-
-	
+	Hitbox hero, enemy1,enemy2;
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Game");
 	
 	while (window.isOpen())
@@ -52,20 +45,20 @@ bool monsterActive = false;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
-			ayo.bulletTraj(ayo, dt);
+			bulletActive = true;
 		}
-		if(!monsterActive)
-		{
-			
-			monsterEnemy.setPosition(rand() % 10 * 100,500);
-			monsterActive = true;
-		}else{monsterEnemy.setPositionX(monsterEnemy,dt);
-		if(monsterEnemy.getPosition().x > -100)
-		{
-			monsterActive = false;
-		}}
+		if(!bulletActive){ayo.bulletSetPosition(p1);}else{ayo.bulletTraj(ayo,dt);}
+		if(!monsterActive){monsterActive = monsterStart(monsterEnemy,dt);}else{monsterEnd(monsterEnemy,dt);monsterActive = outsideFrame(monsterEnemy,monsterActive);}
+		if(!ninjaActive){ninjaActive = monsterStart(ninjaEnemy,dt);}else{monsterEnd(ninjaEnemy,dt);ninjaActive = outsideFrame(ninjaEnemy,ninjaActive);}
+		hitboxPosM(hero,enemy1,monsterEnemy,ayo);
+		hitboxPosN(hero,enemy2,ninjaEnemy,ayo);
+		setHitBox(hero,enemy1);
+		setHitBox(hero,enemy2);
+		const bool colliding1 = hero.getGlobalHitbox().intersects(enemy1.getGlobalHitbox());
+		const bool colliding2 = hero.getGlobalHitbox().intersects(enemy2.getGlobalHitbox());
+		if(colliding1){monsterActive = false; bulletActive = reset(ayo,colliding1,p1);}
+		if(colliding2){ninjaActive = false;bulletActive = reset(ayo,colliding2,p1);}
 		
-
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
