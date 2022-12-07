@@ -1,15 +1,18 @@
 #include <iostream>
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Stuff.h"
 #include "gameplay.h"
 #include "monster.h"
 #include "loadscreen.h"
+#include "Sounds.h"
 using namespace std;
 int main()
 {
 	//create window
+	Soundsboop sonds;
 	sf::Clock clock;
 	sf::Font font;
 	sf::Texture firstBack,player,backg,bullet,monster,ninja;
@@ -53,13 +56,13 @@ int main()
 		sf::Event event;
 		while (window.pollEvent(event)){}
 		window.clear();
-		if(!paused){window.draw(background);}
+		if(!paused){;window.draw(background);}
 		window.draw(ayo);
 		window.draw(p1);
 		window.draw(monsterEnemy);
 		window.draw(ninjaEnemy);
 		window.draw(scores);
-		if(paused){window.draw(load); window.draw(message);}
+		if(paused){sonds.play();window.draw(load); window.draw(message);}
 		window.display();
 	}
 	return 0;

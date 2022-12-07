@@ -4,7 +4,7 @@ Monster::Monster(sf::Texture& monsterText)
     monsterText.loadFromFile("graphics/alien.PNG");
     setTexture(monsterText);
     setScale(0.1f,0.1f);
-    setPosition(800,500);
+    setPosition(500,300);
 }
 void Monster::setPositionX(sf::Sprite& x, sf::Time& y)
 {
@@ -20,7 +20,7 @@ float Monster::setSpeed()
 }
 float Monster::setHeight()
 {
-    float height = (rand()%500)+500;
+    float height = (rand()%100)+300;
     return height;
 }
 Ninja::Ninja(sf::Texture& ninjaText)

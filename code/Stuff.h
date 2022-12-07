@@ -12,7 +12,7 @@ class Stuff : public sf::Sprite
             setPosition(p.getPosition().x, p.getPosition().y);
             setScale(3.0f, 3.0f);
         };
-        void bulletSetPosition(Player& q) { setPosition(q.getPosition().x, q.getPosition().y); }
+        void bulletSetPosition(Player& q) { setPosition(q.getPosition().x, q.getPosition().y);}
         float bulletSetSpeed() 
         {
             float bulletSpeed;
@@ -33,6 +33,7 @@ public:
         bg.loadFromFile("graphics/background.png");
         setTexture(bg);
         setPosition(0, 0);
+        setScale(1.5f,1.5f);
         
 
     };
