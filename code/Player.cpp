@@ -14,7 +14,7 @@ Player::Player(sf::Texture& text)
 float Player::p1Speed()
 {
 	float sped;
-	sped = 8.0f * 100;
+	sped = 5.0f * 100;
 	return sped;
 }
 

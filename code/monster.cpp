@@ -14,12 +14,12 @@ void Monster::setPositionX(sf::Sprite& x, sf::Time& y)
 float Monster::setSpeed()
 {
     float monSpeed;
-    srand((int)time(0));
     monSpeed = (rand() % 10 * 50);
     return monSpeed;
 }
 float Monster::setHeight()
 {
+    srand((int)time(0));
     float height = (rand()%100)+300;
     return height;
 }
@@ -38,12 +38,12 @@ void Ninja::setPositionX(sf::Sprite& x, sf::Time& y)
 float Ninja::setSpeed()
 {
     float ninSpeed;
-    srand((int)time(0));
     ninSpeed = (rand() % 10 * 100);
     return ninSpeed;
 }
 float Ninja::setHeight()
 {
+    srand((int)time(0));
     float height = (rand()%300)+400;
     return height;
 }

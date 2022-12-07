@@ -11,8 +11,6 @@
 using namespace std;
 int main()
 {
-	//create window
-	Soundsboop sonds;
 	sf::Clock clock;
 	sf::Font font;
 	sf::Texture firstBack,player,backg,bullet,monster,ninja;
@@ -29,15 +27,19 @@ int main()
 	environment background(backg);
 	Stuff ayo(bullet,p1);
 	Hitbox hero, enemy1,enemy2;
+	sf::Sound sonds;
+	sf::SoundBuffer buff;
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Game");
 	loadMessage(font,message,scores);
+	laser(sonds,buff);
 	while (window.isOpen())
 	{
 		sf::Time dt = clock.restart();
+		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){window.close();}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){p1.SetPosition(p1,dt);}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){p1.SetPositionY(p1, dt);}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){bulletActive = true;}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){bulletActive = true; sonds.play();}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){paused = false; score = 0;}
 		if(!paused){
 		if(!bulletActive){ayo.bulletSetPosition(p1);}else{ayo.bulletTraj(ayo,dt);bulletActive = reset(ayo,p1);}
@@ -56,13 +58,13 @@ int main()
 		sf::Event event;
 		while (window.pollEvent(event)){}
 		window.clear();
-		if(!paused){;window.draw(background);}
+		if(!paused){window.draw(background);}
 		window.draw(ayo);
 		window.draw(p1);
 		window.draw(monsterEnemy);
 		window.draw(ninjaEnemy);
 		window.draw(scores);
-		if(paused){sonds.play();window.draw(load); window.draw(message);}
+		if(paused){window.draw(load); window.draw(message);}
 		window.display();
 	}
 	return 0;

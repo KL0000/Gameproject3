@@ -2,8 +2,4 @@
 
 #include<SFML/Audio.hpp>
 
-class Soundsboop : public sf::Music
-{
-    public:
-    Soundsboop();
-};
+void laser(sf::Sound& a,sf::SoundBuffer& b);

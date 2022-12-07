@@ -16,12 +16,11 @@ class Stuff : public sf::Sprite
         float bulletSetSpeed() 
         {
             float bulletSpeed;
-            bulletSpeed = (rand() % 10 * 100);
+            bulletSpeed = (10.0f * 100);
             return bulletSpeed;
         }
         void bulletTraj(Stuff& shot, sf::Time& y)
         {
-            srand((int)time(0));
             shot.setPosition(shot.getPosition().x + (bulletSetSpeed() * y.asSeconds() * 5.0f), shot.getPosition().y);
         };
 };

@@ -1,7 +1,10 @@
 #include "Sounds.h"
 
-Soundsboop::Soundsboop()
+
+
+void laser(sf::Sound& a, sf::SoundBuffer& b)
 {
-    openFromFile("sounds/pregame.mp3");
-    setVolume(15.0f);
+    b.loadFromFile("sounds/pew.wav");
+    a.setBuffer(b);
+    a.setVolume(10.0f);
 }
