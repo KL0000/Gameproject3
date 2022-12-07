@@ -2,7 +2,7 @@
 
 void loadMessage(sf::Font& a,sf::Text& messageT,sf::Text& scoreT)
 {
-    a.loadFromFile("fonts/KOMIKAP_.ttf");
+    a.loadFromFile("fonts/upheavtt.ttf");
     messageT.setFont(a);
     scoreT.setFont(a);
     messageT.setString("Press Enter To Start");

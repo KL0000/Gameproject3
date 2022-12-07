@@ -29,10 +29,11 @@ class environment : public sf::Sprite {
 public:
     environment(sf::Texture& bg)
     {
-        bg.loadFromFile("graphics/background.png");
+        bg.loadFromFile("graphics/ayo.png");
         setTexture(bg);
         setPosition(0, 0);
-        setScale(1.5f,1.5f);
+        setScale(4.0f,3.5f);
+        
         
 
     };
